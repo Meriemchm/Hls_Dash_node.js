@@ -43,7 +43,7 @@ const HDForm = () => {
       (key) => selectedResolutions[key]
     );
     formData.append("resolutions", JSON.stringify(selectedRes));
-    formData.append("segmentationType", segmentationType); // Transmet le type de segmentation
+    formData.append("segmentationType", segmentationType); 
 
     try {
       setIsProcessing(true);

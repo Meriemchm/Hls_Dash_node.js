@@ -10,7 +10,7 @@ const VideoPlayer = ({ videoId }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    // récupère les playlists
+    // rles playlists
     fetch(`http://localhost:3000/video/playlists/${videoId}`)
       .then((response) => response.json())
       .then((data) => {
@@ -19,11 +19,11 @@ const VideoPlayer = ({ videoId }) => {
           return playlist;
         });
 
-        // Trier les playlists par résolution (du plus grand au plus petit)
+        
         updatedPlaylists.sort((a, b) => {
-          const resolutionA = parseInt(a.url.split("/")[6].replace(/[^\d]/g, ''), 10); // Extrait la résolution
-          const resolutionB = parseInt(b.url.split("/")[6].replace(/[^\d]/g, ''), 10); // Extrait la résolution
-          return resolutionB - resolutionA; // Trier du plus grand au plus petit
+          const resolutionA = parseInt(a.url.split("/")[6].replace(/[^\d]/g, ''), 10); 
+          const resolutionB = parseInt(b.url.split("/")[6].replace(/[^\d]/g, ''), 10); 
+          return resolutionB - resolutionA; 
         });
 
         setPlaylists(updatedPlaylists);
@@ -71,7 +71,7 @@ const VideoPlayer = ({ videoId }) => {
   return (
     <div className="flex flex-col items-center justify-center p-4 bg-gray-100">
       <div className="flex flex-col items-center justify-center">
-        {/* options de résolutions */}
+        {/* rsolutions */}
         <select
           id="playlist"
           onChange={handlePlaylistChange}
@@ -79,7 +79,7 @@ const VideoPlayer = ({ videoId }) => {
           className="mb-4 p-2 border rounded"
         >
           {playlists.map((playlist, index) => {
-            const resolutionName = playlist.url.split("/")[6]; // Vous pourriez extraire la résolution ici
+            const resolutionName = playlist.url.split("/")[6]; 
             return (
               <option key={index} value={playlist.url}>
                 {playlist.format} - {resolutionName}

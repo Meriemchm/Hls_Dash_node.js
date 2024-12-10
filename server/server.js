@@ -93,7 +93,7 @@ app.post("/uploadHD", upload.single("video"), async (req, res) => {
     const videoName = path.basename(filePath, path.extname(filePath));
     const segmentFolder = path.join(segmentsDir, videoName);
 
-    const { startTime, endTime, segmentationType } = req.body; // Ajout du paramètre protocol
+    const { startTime, endTime, segmentationType } = req.body; 
     const resolutions = JSON.parse(req.body.resolutions || "[]");
 
     console.log("Chemin de la vidéo :", filePath);
@@ -103,7 +103,7 @@ app.post("/uploadHD", upload.single("video"), async (req, res) => {
     if (!fs.existsSync(segmentFolder))
       fs.mkdirSync(segmentFolder, { recursive: true });
 
-    // Segmenter selon le protocole choisi
+    // protocol
     if (segmentationType === "hls") {
       await segmentVideoHLS(
         filePath,
@@ -176,7 +176,7 @@ app.get("/video/playlists/:videoId", (req, res) => {
   const videoPath = path.join(segmentsDir, videoId);
 
   if (fs.existsSync(videoPath)) {
-    // Obtenir toutes les résolutions disponibles
+    // reso dispo
     const availableResolutions = fs
       .readdirSync(videoPath)
       .filter((folder) => fs.lstatSync(path.join(videoPath, folder)).isDirectory());

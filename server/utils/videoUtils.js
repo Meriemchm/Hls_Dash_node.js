@@ -132,7 +132,7 @@ export const segmentVideoDASH = (
           .on("end", () => {
             console.log(`Segmentation DASH terminée pour ${label}.`);
 
-            // Fonction pour échapper les caractères spéciaux dans une expression régulière
+            
             function escapeRegExp(string) {
               return string.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
             }
@@ -145,10 +145,10 @@ export const segmentVideoDASH = (
                 });
               }
 
-              // Log du contenu du fichier manifeste pour débogage
+              
               console.log("Contenu du manifeste original :", data);
 
-              // Log pour vérifier la présence des chemins absolus
+              
               console.log(
                 "Chemin absolu init dans le manifeste:",
                 data.match(
@@ -156,7 +156,7 @@ export const segmentVideoDASH = (
                 )
               );
 
-              // Résoudre les chemins absolus pour s'assurer qu'ils sont bien comparés
+              
               const absoluteInitPath = path.resolve(
                 segmentFolder,
                 "init-stream$RepresentationID$.m4s"
@@ -169,7 +169,7 @@ export const segmentVideoDASH = (
               console.log("Chemin absolu init:", absoluteInitPath);
               console.log("Chemin absolu media:", absoluteMediaPath);
 
-              // Utilisation de l'expression régulière avec les chemins échappés
+              
               let modifiedData = data
                 .replace(
                   new RegExp(escapeRegExp(absoluteInitPath), "g"),
@@ -182,10 +182,10 @@ export const segmentVideoDASH = (
                   )
                 );
 
-              // Log du manifeste modifié pour vérifier le changement
+
               console.log("Contenu du manifeste modifié :", modifiedData);
 
-              // Enregistrer le fichier manifeste modifié avec des chemins relatifs
+              
               fs.writeFile(manifestPath, modifiedData, "utf8", (err) => {
                 if (err) {
                   return rej({
